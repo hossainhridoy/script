@@ -12,12 +12,11 @@ const dictionary = {
     "FAQ": "প্রশ্নোত্তর",
     "Sitemap": "সাইটম্যাপ",
     "Change Language": "ভাষা পরিবর্তন",
-"HridoyTV": "হৃদয়টিভি",
     "More Menu": "আরও মেনু"
   },
   en: {
-    "বাতিল করুন": "Save",
-    "সেভ করুন": "Cancel",
+    "বাতিল করুন": "Cancel",
+    "সেভ করুন": "Save",
     "হোম": "Home",
     "সম্পর্কে": "About",
     "যোগাযোগ": "Contact",
@@ -36,13 +35,11 @@ function translateWords(lang) {
   const dict = dictionary[lang];
   if (!dict) return;
 
-  // <hridoytv> ট্যাগ অনুবাদ
   document.querySelectorAll("hridoytv").forEach(el => {
     const text = el.innerText.trim();
     if (dict[text]) el.innerText = dict[text];
   });
 
-  // বাটন অনুবাদ (যদি Save/Cancel থাকে)
   document.querySelectorAll("button").forEach(el => {
     const text = el.innerText.trim();
     if (dict[text]) el.innerText = dict[text];
@@ -62,6 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
   openBtn.addEventListener("click", () => {
     popup.style.display = "flex";
     setTimeout(() => popup.classList.add("show"), 10);
+    const lang = localStorage.getItem("lang") || "en";
+    translateWords(lang);
   });
 
   closeBtn.addEventListener("click", () => {
@@ -80,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => popup.style.display = "none", 300);
   });
 });
-
 
 const observer = new MutationObserver(() => {
   const lang = localStorage.getItem("lang") || "en";
