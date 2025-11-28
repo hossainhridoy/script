@@ -25,7 +25,7 @@ const dictionary = {
     "প্রশ্নোত্তর": "FAQ",
     "সাইটম্যাপ": "Sitemap",
     "ভাষা পরিবর্তন": "Change Language",
-    "আরও মেনু": "More Menu"
+    "আরও মেনু": "More Menu",
 "বাতিল করুন": "Save",
 "সেভ করুন": "Cancel"
   }
