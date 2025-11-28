@@ -12,6 +12,7 @@ const dictionary = {
     "FAQ": "প্রশ্নোত্তর",
     "Sitemap": "সাইটম্যাপ",
     "Change Language": "ভাষা পরিবর্তন",
+"HridoyTV": "হৃদয়টিভি",
     "More Menu": "আরও মেনু"
   },
   en: {
