@@ -1,7 +1,7 @@
 const dictionary = {
   bn: {
 "HridoyTV": "হৃদয়টিভি",
-    "Save": "সেভ করুন",
+    "Save": "সেভ করুন ভালো",
     "Cancel": "বাতিল করুন",
     "Home": "হোম",
     "About": "সম্পর্কে",
