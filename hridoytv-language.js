@@ -10,7 +10,9 @@ const dictionary = {
     "FAQ": "প্রশ্নোত্তর",
     "Sitemap": "সাইটম্যাপ",
     "Change Language": "ভাষা পরিবর্তন",
-    "More Menu": "আরও মেনু"
+    "More Menu": "আরও মেনু",
+"Save": "সেভ করুন",
+"Cancel": "বাতিল করুন"
   },
   en: {
     "হোম": "Home",
@@ -24,6 +26,8 @@ const dictionary = {
     "সাইটম্যাপ": "Sitemap",
     "ভাষা পরিবর্তন": "Change Language",
     "আরও মেনু": "More Menu"
+"বাতিল করুন": "Save",
+"সেভ করুন": "Cancel"
   }
 };
 
