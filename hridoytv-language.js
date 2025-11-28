@@ -18,7 +18,7 @@ const dictionary = {
   en: {
 "হৃদয়টিভি": "HridoyTV",
     "বাতিল করুন": "Cancel",
-    "সেভ করুন": "Save",
+    "সেভ করুন ভালো": "Save",
     "হোম": "Home",
     "সম্পর্কে": "About",
     "যোগাযোগ": "Contact",
