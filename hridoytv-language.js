@@ -1,5 +1,7 @@
 const dictionary = {
   bn: {
+    "Save": "সেভ করুন",
+    "Cancel": "বাতিল করুন",
     "Home": "হোম",
     "About": "সম্পর্কে",
     "Contact": "যোগাযোগ",
@@ -10,11 +12,12 @@ const dictionary = {
     "FAQ": "প্রশ্নোত্তর",
     "Sitemap": "সাইটম্যাপ",
     "Change Language": "ভাষা পরিবর্তন",
-    "More Menu": "আরও মেনু",
-    "Save": "সেভ করুন",
-    "Cancel": "বাতিল করুন"
+    "More Menu": "আরও মেনু"
+
   },
   en: {
+    "বাতিল করুন": "Save",
+    "সেভ করুন": "Cancel",
     "হোম": "Home",
     "সম্পর্কে": "About",
     "যোগাযোগ": "Contact",
@@ -25,9 +28,7 @@ const dictionary = {
     "প্রশ্নোত্তর": "FAQ",
     "সাইটম্যাপ": "Sitemap",
     "ভাষা পরিবর্তন": "Change Language",
-    "আরও মেনু": "More Menu",
-    "বাতিল করুন": "Save",
-    "সেভ করুন": "Cancel"
+    "আরও মেনু": "More Menu"
   }
 };
 
