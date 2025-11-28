@@ -88,3 +88,24 @@ const observer = new MutationObserver(() => {
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
+
+
+function translateWords(lang) {
+  const dict = dictionary[lang];
+  if (!dict) return;
+
+  document.querySelectorAll("hridoytv, button, a, span, p, li, h1, h2, h3, h4, h5, h6").forEach(el => {
+    if (el.children.length === 0 && el.innerText.trim() !== "") {
+      let text = el.innerText;
+
+      // প্রতিটি শব্দ আলাদা আলাদা করে খোঁজা হচ্ছে
+      for (const key in dict) {
+        // 🔥 word boundary (space বা punctuation অনুযায়ী)
+        const regex = new RegExp(`\\b${key}\\b`, "g");
+        text = text.replace(regex, dict[key]);
+      }
+
+      el.innerText = text.trim();
+    }
+  });
+}
