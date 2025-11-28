@@ -13,7 +13,6 @@ const dictionary = {
     "Sitemap": "সাইটম্যাপ",
     "Change Language": "ভাষা পরিবর্তন",
     "More Menu": "আরও মেনু"
-
   },
   en: {
     "বাতিল করুন": "Save",
@@ -35,7 +34,15 @@ const dictionary = {
 function translateWords(lang) {
   const dict = dictionary[lang];
   if (!dict) return;
+
+  // <hridoytv> ট্যাগ অনুবাদ
   document.querySelectorAll("hridoytv").forEach(el => {
+    const text = el.innerText.trim();
+    if (dict[text]) el.innerText = dict[text];
+  });
+
+  // বাটন অনুবাদ (যদি Save/Cancel থাকে)
+  document.querySelectorAll("button").forEach(el => {
     const text = el.innerText.trim();
     if (dict[text]) el.innerText = dict[text];
   });
@@ -72,5 +79,3 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => popup.style.display = "none", 300);
   });
 });
-
-
