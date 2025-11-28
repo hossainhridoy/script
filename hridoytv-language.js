@@ -80,3 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => popup.style.display = "none", 300);
   });
 });
+
+
+const observer = new MutationObserver(() => {
+  const lang = localStorage.getItem("lang") || "en";
+  if (lang !== "en") translateWords(lang);
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
