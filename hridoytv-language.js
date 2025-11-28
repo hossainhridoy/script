@@ -15,8 +15,8 @@ const dictionary = {
     "More Menu": "আরও মেনু"
   },
   en: {
-    "সেভ করুন": "Save",
     "বাতিল করুন": "Cancel",
+    "সেভ করুন": "Save",
     "হোম": "Home",
     "সম্পর্কে": "About",
     "যোগাযোগ": "Contact",
@@ -31,7 +31,6 @@ const dictionary = {
   }
 };
 
-// ===================== Translate Function =====================
 function translateWords(lang) {
   const dict = dictionary[lang];
   if (!dict) return;
@@ -41,71 +40,49 @@ function translateWords(lang) {
     if (dict[text]) el.innerText = dict[text];
   });
 
-  document.querySelectorAll("button, a, span, p, li, h1, h2, h3, h4, h5").forEach(el => {
-    if (el.children.length === 0) {
-      const text = el.innerText.trim();
-      if (dict[text]) el.innerText = dict[text];
-    }
+  document.querySelectorAll("button").forEach(el => {
+    const text = el.innerText.trim();
+    if (dict[text]) el.innerText = dict[text];
   });
 }
 
-// ===================== Apply Language =====================
 function applyLang(lang) {
   localStorage.setItem("lang", lang);
   translateWords(lang);
 }
 
-// ===================== Initial Setup =====================
 document.addEventListener("DOMContentLoaded", () => {
   const popup = document.getElementById("langPopup");
   const openBtn = document.getElementById("changeLangBtn");
   const closeBtn = document.getElementById("closeLang");
 
-  openBtn?.addEventListener("click", () => {
+  openBtn.addEventListener("click", () => {
     popup.style.display = "flex";
     setTimeout(() => popup.classList.add("show"), 10);
+    const lang = localStorage.getItem("lang") || "en";
+    translateWords(lang);
   });
 
-  closeBtn?.addEventListener("click", () => {
+  closeBtn.addEventListener("click", () => {
     popup.classList.remove("show");
-    setTimeout(() => (popup.style.display = "none"), 300);
+    setTimeout(() => popup.style.display = "none", 300);
   });
 
   const savedLang = localStorage.getItem("lang") || "en";
   if (savedLang !== "en") translateWords(savedLang);
-  const langSelect = document.getElementById("langSelect");
-  if (langSelect) langSelect.value = savedLang;
+  document.getElementById("langSelect").value = savedLang;
 
-  document.getElementById("saveLang")?.addEventListener("click", () => {
+  document.getElementById("saveLang").addEventListener("click", () => {
     const lang = document.getElementById("langSelect").value;
     applyLang(lang);
     popup.classList.remove("show");
-    setTimeout(() => (popup.style.display = "none"), 300);
+    setTimeout(() => popup.style.display = "none", 300);
   });
 });
 
-// ===================== Dynamic Observer (Magic Part 😎) =====================
-const observer = new MutationObserver(mutations => {
+const observer = new MutationObserver(() => {
   const lang = localStorage.getItem("lang") || "en";
-  if (lang !== "en") {
-    mutations.forEach(mutation => {
-      mutation.addedNodes.forEach(node => {
-        if (node.nodeType === 1) {
-          if (node.matches("hridoytv")) {
-            const text = node.innerText.trim();
-            const dict = dictionary[lang];
-            if (dict[text]) node.innerText = dict[text];
-          } else if (node.querySelectorAll) {
-            node.querySelectorAll("hridoytv").forEach(el => {
-              const text = el.innerText.trim();
-              const dict = dictionary[lang];
-              if (dict[text]) el.innerText = dict[text];
-            });
-          }
-        }
-      });
-    });
-  }
+  if (lang !== "en") translateWords(lang);
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
