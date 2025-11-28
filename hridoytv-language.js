@@ -69,9 +69,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-document.addEventListener("DOMContentLoaded", () => {
-  const savedLang = localStorage.getItem("lang") || "en";
-  if (savedLang !== "en") translateWords(savedLang);
-  document.body.classList.add("loaded");
-});
