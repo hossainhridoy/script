@@ -67,3 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => popup.style.display = "none", 300);
   });
 });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("lang") || "en";
+  if (savedLang !== "en") translateWords(savedLang);
+  document.body.classList.add("loaded");
+});
