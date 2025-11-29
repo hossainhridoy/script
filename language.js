@@ -1,11 +1,12 @@
 // =========================
-// 🌐 Language System by Hridoy
+// 🌐 HridoyTV Language System
 // =========================
 
 const dictionary = {
   bn: {
     "Save": "সেভ করুন",
     "Cancel": "বাতিল করুন",
+    "Search Channel": "সার্চ চ্যানেল",
     "Home": "হোম",
     "About": "সম্পর্কে",
     "Contact": "যোগাযোগ",
@@ -22,6 +23,7 @@ const dictionary = {
   en: {
     "সেভ করুন": "Save",
     "বাতিল করুন": "Cancel",
+    "সার্চ চ্যানেল": "Search Channel",
     "হোম": "Home",
     "সম্পর্কে": "About",
     "যোগাযোগ": "Contact",
@@ -37,75 +39,48 @@ const dictionary = {
   }
 };
 
-// =========================
-// 🌍 Translation Function
-// =========================
+// 🔁 Translate all hridoytv tags
 function translateWords(lang) {
   const dict = dictionary[lang];
   if (!dict) return;
 
-  document.querySelectorAll("hridoytv, button, a, span, p, li, h1, h2, h3, h4, h5, h6").forEach(el => {
-    if (el.children.length === 0 && el.innerText.trim() !== "") {
-      let text = el.innerText;
+  document.querySelectorAll("hridoytv").forEach(el => {
+    const text = el.innerText.trim();
+    if (dict[text]) el.innerText = dict[text];
+  });
 
-      for (const key in dict) {
-        const regex = new RegExp(`\\b${key}\\b`, "g");
-        text = text.replace(regex, dict[key]);
-      }
-
-      el.innerText = text.trim();
-    }
+  // placeholder translate (যেমন Search box)
+  document.querySelectorAll("input[placeholder]").forEach(el => {
+    const text = el.getAttribute("placeholder");
+    if (dict[text]) el.setAttribute("placeholder", dict[text]);
   });
 }
 
-// =========================
-// 💾 Apply + Save Language
-// =========================
+// 💾 Save and apply language
 function applyLang(lang) {
   localStorage.setItem("lang", lang);
   translateWords(lang);
 }
 
-// =========================
-// ⚡ Initial Load
-// =========================
+// 🌍 Initial load
 document.addEventListener("DOMContentLoaded", () => {
-  const popup = document.getElementById("langPopup");
-  const openBtn = document.getElementById("changeLangBtn");
-  const closeBtn = document.getElementById("closeLang");
-
-  openBtn?.addEventListener("click", () => {
-    popup.style.display = "flex";
-    setTimeout(() => popup.classList.add("show"), 10);
-  });
-
-  closeBtn?.addEventListener("click", () => {
-    popup.classList.remove("show");
-    setTimeout(() => popup.style.display = "none", 300);
-  });
-
   const savedLang = localStorage.getItem("lang") || "en";
   if (savedLang !== "en") translateWords(savedLang);
-  document.getElementById("langSelect").value = savedLang;
+  const selector = document.getElementById("langSelect");
+  if (selector) selector.value = savedLang;
 
   document.getElementById("saveLang")?.addEventListener("click", () => {
-    const lang = document.getElementById("langSelect").value;
+    const lang = selector.value;
     applyLang(lang);
-    popup.classList.remove("show");
-    setTimeout(() => popup.style.display = "none", 300);
+    document.getElementById("langPopup")?.classList.remove("show");
   });
 });
 
-// =========================
-// 🔄 Dynamic Observer
-// =========================
+// 🔄 Dynamic update observer (auto translate if new element added)
 const observer = new MutationObserver(() => {
   const lang = localStorage.getItem("lang") || "en";
   if (lang !== "en") translateWords(lang);
 });
 observer.observe(document.body, { childList: true, subtree: true });
 
-// =========================
-// ✅ Loaded message (for debug)
-// =========================
-console.log("✅ Language system loaded successfully — HridoyTV 🌐");
+console.log("✅ HridoyTV Language.js loaded");
